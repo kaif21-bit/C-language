@@ -1,29 +1,48 @@
-#include<windows.h>
 #include<stdio.h>
+void quicksort(int ar[30],int first,int last)
+{
+   int i,j,pivot,swap;
+   if(first<last)// condition
+   {
+       pivot=first;
+       i=first;
+       j=last;
+       while(i<j)//condition
+       {
+           while(ar[i]<=ar[pivot]&&i<last)
+            i++;
+           while(ar[j]>ar[pivot])
+            j--;
+           if(i<j)
+           {
+               swap=ar[i];
+               ar[i]=ar[j];
+               ar[j]=swap;
+           }
+       }
+       swap=ar[pivot];
+       ar[pivot]=ar[j];
+       ar[j]=swap;
+       quicksort(ar,0,j-1);
+       quicksort(ar,j+1,last);
+   }
+}
 
 int main()
 {
-    printf("\n\n\t\tStudytonight - Best place to learn\n\n\n");
-
-    //BACKGROUND_RED| BACKGROUND_GREEN| BACKGROUND_BLUE| BACKGROUND_INTENSITY
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_BLUE|BACKGROUND_RED|BACKGROUND_INTENSITY);
-    printf("\n\nStudytonight just showed you how to put colors to your code!!");
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_GREEN);
-    printf("\n\nIsn't this Awesome?");
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_INTENSITY|BACKGROUND_RED);
-    printf("\n\nYou just did something that only 1 out of 10 coders are familiar of :)\n");
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_GREEN|BACKGROUND_INTENSITY);
-    printf("\n\nYou are doing great!!");
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_BLUE|BACKGROUND_INTENSITY);
-    printf("\n\nThe best is yet to come!");
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_GREEN|BACKGROUND_INTENSITY);
-    printf("\n\nWhat are you waiting for?? Just play with it!!");
-
-    printf("\n\n\t\t\tCoding is Fun !\n\n\n");
+    int ar[30],n,i;
+    printf("Enter how many element yow want to enter\n");
+    scanf("%d",&n);
+    printf("Enter %d element one by one\n",n);
+    for(i=0;i<n;i++)
+    scanf("%d",&ar[i]);
+    printf("Arrays element are given below\n");
+    for(i=0;i<n;i++)
+    printf("%d",ar[i]);
+    quicksort(ar,0,n-1);
+    printf("\n sorted array are");
+    for(i=0;i<n;i++)
+        printf("%d",ar[i]);
     return 0;
+ 
 }
